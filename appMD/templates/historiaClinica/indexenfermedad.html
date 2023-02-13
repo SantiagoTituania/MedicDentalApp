@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Lista de enfermedades {% endblock %}
+
+{% block contenido %} 
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<div class = "container">
+    <form class = "form-inline my-2 my-lg-0 mr-4" action ="{% url 'buscarH' %}">
+        <br>
+        <input class = "form-control mr-sm-2" name="buscarHistoria" type="search" placeholder="Buscar Paciente por su Nombre..." aria-label="Buscar Historia por Nombre del Paciente">
+        <button class = "btn btn-primary my-2 my-sm-0" type="submit" >Buscar</button>
+    </form>
+</div>
+<br>
+
+<div class="card">
+    <div class="card-header" >
+        <a name="" id="" class="btn btn-success" href="{% url 'registrarH' %}" role="button"><i class="fa-solid fa-user-plus"></i> Registrar Nueva Historia Clinica</a>
+    </div>
+    
+    <div class="card-body-resposive">
+    </br>
+        <h4 class="card-title">Lista de enfermeaddes</h4>
+            <table class="table table-primary" width=30>
+                <thead>
+                    <tr>
+                        <th>Nº HC</th>
+                        <th>sa</th>
+                        <th>aa</th>
+                        <th>ss</th>
+                        <th>Motivo</th>
+                        <th><center>Acciones</th>
+                        
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for enfermedad in enfermedades %}
+                    <tr class="">
+                        <td>{{ enfermedad.id }}</td>
+                        <td>{{ enfermedad.antibioticosAlergia }}</td>
+                        <td>{{ enfermedad.anestesiaAlergia }}</td>
+                 
+                        <td>
+                            <a name="" id="" class="btn btn-warning" href="{% url 'modificar' paciente.id %}" role="button"><i class="fa-solid fa-pencil"></i> Modificar</a> 
+                            |
+                            <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' paciente.id %}" role="button"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+        
+    </div>
+    <div class="card-footer text-muted">
+       Lista de Historias Clínicas de MedicDental v.1.0
+    </div>
+</div> 
+
+{% endblock %}

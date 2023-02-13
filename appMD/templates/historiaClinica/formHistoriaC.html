@@ -1,0 +1,84 @@
+<form enctype="multipart/form-data" method="POST">
+  {% csrf_token %}
+  <div class="container">
+    <div class="row align-items-start">
+      <div class="col">
+        <label for="" class="form-label">Codigo del paciente</label>
+      </div>
+      <div class="col">
+        <label for="" class="form-label">Motivo de Consulta</label>
+      </div>
+      <div class="col">
+        tres de tres columnas
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        <input 
+          type="select"
+          class="form-control" 
+          name="paciente.nombre" 
+          id="" 
+          aria-describedby="helpId" 
+          placeholder=""
+          value="" 
+          />
+        <small id="helpId" class="form-text text-muted">Ingresar el Código del paciente</small>
+        {% if input.value == "" %}
+          <div class="col-15 help-text text-danger fs-6"> * no se ha igresado el codigo del paciente</div>
+        {% endif %}
+          
+
+      </div>
+      <div class="col">
+        <input 
+          type="TextField"
+          class="form-control" 
+          name="motivoConsulta" 
+          id="" 
+          aria-describedby="helpId" 
+          placeholder=""
+          value="" 
+          />
+          <small id="helpId" class="form-text text-muted">Ingresar el motivo de consulta</small>
+          {% if input.value == "" %}
+            <div class="col-15 help-text text-danger fs-6"> * no se ha igresado el motivo de consulta del paciente</div>
+          {% endif %}
+      </div>
+      <div class="col">
+        c3Una de tres columnas
+      </div>
+    </div>
+
+    {% comment %} <input name="" id="" class="btn btn-success" type="submit" value="Enviar Información">
+    <a name="" id="" class="btn btn-primary" href="{% url 'historiaC' %}" role="button">Cancelar</a>
+   {% endcomment %}
+  </div>
+  
+  <form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {% for campo in formularioH %}
+      <div class="mb-2">
+        <label for="" class="form-label">{{campo.label}}</label>
+        <input 
+        type="{{campo.field.widget.input_type}}"
+        class="form-control" 
+        name="{{campo.name}}" 
+        id="" 
+        aria-describedby="helpId" 
+        placeholder="{{campo.label}}"
+        value="{{ campo.value | default:'' }}" 
+            
+        
+        />
+        {% comment %} <small id="helpId" class="form-text text-muted">Ingresar de preferencia los dos Nombres</small> {% endcomment %}
+      </div>
+      <div class="col-15 help-text"> {{campo.errors}}</div>
+  
+    {% endfor %}
+  
+    <input name="" id="" class="btn btn-success" type="submit" value="Enviar Información">
+    <a name="" id="" class="btn btn-primary" href="{% url 'historiaC' %}" role="button">Cancelar</a>
+  </form>
+  
+</form>

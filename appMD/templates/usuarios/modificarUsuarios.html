@@ -1,0 +1,25 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+{% extends 'base.html' %}
+
+
+{% block titulo %} Modificar Informacion del Usuario {% endblock %}
+
+{% block contenido %} 
+
+
+<div class="card">
+    <div class="card-header">
+       <center><b><h2> Ficha para modificar información del usuario</b></center>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del Usuario</h4>
+        
+        {% include 'usuarios/formUsuarios.html' %}
+
+    </div>
+    <div class="card-footer text-muted">
+        Modicar Usuarios MedicDental v.1.0
+    </div>
+</div>
+
+{% endblock %}

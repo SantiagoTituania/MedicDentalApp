@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+{% block titulo %} Registrar Nuevo Paciente {% endblock %}
+
+{% block contenido %} 
+{% comment %} <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> {% endcomment %}
+<div class="card">
+    <div class="card-header">
+       <center> FICHA PARA REGISTRAR UN NUEVO PACIENTE</center>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del Paciente</h4>
+        
+        {% include 'pacientes/form.html' %}
+
+    </div>
+    <div class="card-footer text-muted">
+        Registar Pacientes en MedicDental v.1.0
+    </div>
+</div>
+
+{% endblock %}

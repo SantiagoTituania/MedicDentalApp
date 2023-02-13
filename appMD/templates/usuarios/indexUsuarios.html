@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block titulo %} Usuarios {% endblock %}
+{% block subtitulo %} Lista de Usuarios {% endblock %}
+
+{% block contenido %} 
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<div class = "container mx-0">
+    <form class = "form-inline mx-0" action ="{% url 'buscarU' %}">
+        <br>
+        <input class = "form-control mr-sm-2 col-lg-6 " name="buscarUsuario" type="search" placeholder="Buscar Usuario por su Nombre..." aria-label="Buscar Usuario por su Nombre...">
+        <button class = "btn btn-primary my-0 my-sm-0" type="submit" >Buscar</button>
+    </form>
+</div>
+<br>
+<div class="card">
+    <div class="card-header" >
+        <a name="" id="" class="btn btn-success float-center" href="{% url 'registrarU' %}" role="button"><i class="fa-solid fa-user-plus"></i> Registrar Nuevo Usuario</a>
+    </div>
+    
+    <div class="card-body-resposive">
+       
+            <table class="table" width=30>
+                <thead>
+                    <tr class="table-primary">
+                        <th>Id</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Cédula</th>
+                        <th>Nº Celular</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Rol</th>
+                        <th><center>Acciones</th>
+                        
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr class="">
+                        <td>{{ usuario.id }}</td>
+                        <td>{{ usuario.nombres }}</td>
+                        <td>{{ usuario.apellidos }}</td>
+                        <td>{{ usuario.cedula }}</td>
+                        <td>{{ usuario.celular }}</td>
+                        <td>{{ usuario.nUsuario }}</td>
+                        <td>{{ usuario.contrasenia }}</td>
+                        <td>{{ usuario.rol }}</td>
+                        <td>
+                            <a name="" id="" class="btn btn-warning" href="{% url 'modificarU' usuario.id %}" role="button"><i class="fa-solid fa-pencil"></i> Modificar</a> 
+                            |
+                            <a name="" id="" class="btn btn-danger" href="{% url 'eliminarU' usuario.id %}" role="button"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+        
+    </div>
+    <div class="card-footer text-muted">
+       Lista de Usuarios de MedicDental v.1.0
+    </div>
+</div> 
+
+{% endblock %}

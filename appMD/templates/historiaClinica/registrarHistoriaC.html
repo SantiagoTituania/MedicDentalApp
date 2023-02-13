@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+{% block titulo %} Registrar Nueva Historia Clínica del Paciente {% endblock %}
+
+{% block contenido %} 
+{% comment %} <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> {% endcomment %}
+<div class="card">
+    <div class="card-header">
+       <center> Ficha para Registrar una Nueva Historia Clínica</center>
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Código del Paciente y Motivo de Consulta</h4>
+        
+        {% include 'historiaClinica/formHistoriaC.html' %}
+        {% include 'historiaClinica/formEnfermedad.html' %}
+
+    </div>
+   
+    <div class="card-footer text-muted">
+        Registar Historia Clínica en MedicDental v.1.0
+    </div>
+
+</div>
+{% comment %} {% include 'historiaClinica/formHistoriaC.html' %} {% endcomment %}
+
+
+{% endblock %}
+
