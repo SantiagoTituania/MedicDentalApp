@@ -48,7 +48,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="{% url 'inicioAdm' %}"><img src="{% static 'logo.jpg' %}" height="500" width="145" alt="#" /></a>
+                              <a href="{% url 'inicioPaciente' %}"><img src="{% static 'logo.jpg' %}" height="500" width="145" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -60,14 +60,14 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
+                              <li class="nav-item">
+                                 <a class="nav-link" href="{% url 'inicioPaciente' %}">Inicio</a>
+                              </li>
                               <li class="nav-item active">
-                                 <a class="nav-link" href="{% url 'inicioAdm' %}">Inicio</a>
+                                 <a class="nav-link" href="{% url 'consultarCita' %}">Consultar Cita</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="{% url 'pacientes' %}">Consultar Cita</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="{% url 'usuarios' %}" >Acceder</a>
+                                 <a class="nav-link" href="{% url 'login' %}" >Acceder</a>
                               </li>
 
                            </ul>
@@ -95,8 +95,8 @@
          </div>
       </div>
       <br>
-
-      <form class="form-inline" action="{% url 'list' %}" method="post" style="margin-bottom: 20px; padding-left: 60%;">
+      {% comment %}  action{% url 'list' %} {% endcomment %}
+      <form class="form-inline" action="" method="post" style="margin-bottom: 20px; padding-left: 60%;">
         {% csrf_token %}
       
         <input type="date" class="form-control col-md-5" value="{{form.data.date|date:'Y-m-d'}}" name="date" placeholder="Date rendez-vous" id="date">

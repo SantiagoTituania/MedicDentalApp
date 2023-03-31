@@ -1,8 +1,11 @@
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+{% extends 'base.html' %}
+{% load static %}
+{% comment %} <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 {% extends 'base.html' %}
 
 
 {% block titulo %} Modificar Informacion del Paciente {% endblock %}
+{% block subtitulo %} Modificar información del paciente  {% endblock %}
 
 {% block contenido %} 
 
@@ -21,5 +24,82 @@
         Modicar Pacientes MedicDental v.1.0
     </div>
 </div>
+
+{% endblock %} {% endcomment %}
+
+<!--nuevo estilo para modificar -->
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+{% block titulo %} Modificar Paciente {% endblock %}
+{% block subtitulo %} Modificar Información del Paciente {% endblock %}
+
+{% block contenido %} 
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/montserrat-font.css' %}">
+    
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="{% static 'style1.css' %}"/>
+    <body class="form-v10">
+        <div class="page-content">
+            <div class="form-v10-content">
+                <form class="form-detail" action="{% url 'modificar' id=id %}" method="POST" id="myform">
+                    {% csrf_token %}
+                    <div class="form-left">
+                        <h2>Información General</h2>
+                            <div class="form-row form-row-1">
+                                <input type="text" name="nombres" id="nombres" class="input-text" value="{{formp.data.nombres}}" placeholder="Nombres" required>
+                            </div>
+                            <div class="form-row form-row-2">
+                                <input type="text" name="apellidos" id="apellidos" class="input-text" value="{{formp.data.apellidos}}" placeholder="Apellidos" required>
+                            </div>
+
+                        <div class="form-row">
+                            <input type="text" name="cedula" class="" id="cedula" value="{{formp.data.cedula}}" placeholder="Nº de Cédula" required>
+                        </div>
+                        <div class="form-row">
+                            <input  type="date" class="form-control col-md-auto" value="{{formp.data.fechaNacimiento|date:'Y-m-d'}}" name="fechaNacimiento" placeholder="Fecha de Nacimiento" id="fechaNacimiento" required>
+                        </div>
+                        <div class="form-row">
+                            <select name="sexo" value="{{formp.data.sexo}}" id="sexo">
+                                <option class="option" value="title">Sexo</option>
+                                <option class="option" value="M">Masculino</option>
+                                <option class="option" value="F">Femenino</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -30px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div>                       
+                        
+                    </div>
+                    <div class="form-right">
+                        <h2>Información de Contacto</h2>
+                        <div class="form-row">
+                            <input type="text" name="celular" class="" id="celular" value="{{formp.data.celular}}" placeholder="Nº Celular" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="text" name="correo" id="correo" class="input-text" value="{{formp.data.correo}}" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Correo Electrónico">
+                        </div>
+                        <div class="form-row">
+                            <input type="text" name="direccion" class="" id="direccion" value="{{formp.data.direccion}}" placeholder="Dirección del domicilio" required>
+                        </div>
+         
+                        <div class="form-row-last">
+                            <input type="submit" name="modificar" class="register" id="modificar" value="Guardar Información" >
+                        </div> 
+
+                    </div>
+                    
+                </form>
+            </div>
+            
+        </div>
+        
+    </body>
+
 
 {% endblock %}

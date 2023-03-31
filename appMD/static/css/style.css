@@ -38,6 +38,7 @@
 
 .container {
      max-width: 1170px;
+     border-radius: 15px;
 }
 
 html {
@@ -336,6 +337,9 @@ button {
 .banner_po {
      position: inherit;
 }
+.s1 {
+     background-color: #861111;
+ }
 
 .yoga_box span {
      color: #fff;

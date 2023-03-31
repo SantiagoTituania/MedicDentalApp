@@ -10,19 +10,24 @@ import datetime
 
 # Create your models here.
 
+paciente_sexo=[
+    ("M", 'Masculino'),
+    ("F", 'Femenino')
+]
+
 class Paciente(models.Model):
     id = models.AutoField(primary_key=True)
     nombres = models.CharField(max_length=100, verbose_name="Nombres")
     apellidos = models.CharField(max_length=100, verbose_name="Apellidos")
     cedula = models.CharField(max_length=11, verbose_name="Cédula")
     fechaNacimiento = models.DateField()
-    sexo = models.CharField(max_length=1, verbose_name="Sexo")
+    sexo = models.CharField(max_length=11, null=False, blank=False, choices= paciente_sexo, verbose_name="Sexo")
     direccion = models.CharField(max_length=100, verbose_name="Dirección")
     celular = models.CharField(max_length=10, verbose_name="Celular")
     correo = models.EmailField(max_length=254, null= True, verbose_name="Correo Electrónico")
 
     def __str__(self):
-        fila= "Nombres: " + self.nombres + " - " + "Apellidos: " + self.apellidos + " - " + "Cédula: " + self.cedula
+        fila= "Nombres: " + self.nombres + "  " + self.apellidos + " - " + "Cédula: " + self.cedula
         return fila
 
 class Usuario(models.Model):

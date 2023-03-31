@@ -3,14 +3,16 @@ from . import views
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView, LogoutView
 
 
 urlpatterns = [
     path('', views.inicioPaciente, name='inicioPaciente'),
     path('citas/consultarCita', views.consultarCita, name='consultarCita'),
     path('citas/buscarCita', views.buscarCita, name='buscarCita'),
-    path('citas/login', views.login, name='login'),
-    path('', views.inicioAdm, name='inicioAdm'),
+    path('citas/login', LoginView.as_view(template_name='login/login.html'), name='login'),
+    path('citas/logout', LogoutView.as_view(template_name='logout/login.html'), name='logout'),
+     path('inicio', views.inicioAdm, name='inicioAdm'),
     path('nosotros', views.nostros, name='nosotros'),
     path('pacientes', views.pacientes, name='pacientes'),
     path('pacientes/registrar', views.registrar, name='registrar'),

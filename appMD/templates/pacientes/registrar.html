@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
+
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 {% block titulo %} Registrar Nuevo Paciente {% endblock %}
+{% block subtitulo %} Registrar Nuevo Paciente {% endblock %}
 
 {% block contenido %} 
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 {% comment %} <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> {% endcomment %}
-<div class="card">
+{% comment %} <div class="card">
     <div class="card-header">
        <center> FICHA PARA REGISTRAR UN NUEVO PACIENTE</center>
     </div>
@@ -14,10 +19,74 @@
         
         {% include 'pacientes/form.html' %}
 
+
     </div>
+    
     <div class="card-footer text-muted">
         Registar Pacientes en MedicDental v.1.0
     </div>
-</div>
+</div> {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/montserrat-font.css' %}">
+	{% comment %} <link rel="stylesheet" type="text/css" href="{% static 'fonts/material-design-iconic-font/css/material-design-iconic-font.min.css' %}"> {% endcomment %}
+    
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="{% static 'style1.css' %}"/>
+    <body class="form-v10">
+        <div class="page-content">
+            <div class="form-v10-content">
+                <form class="form-detail" action="{% url 'registrar' %}" method="POST" id="myform">
+                    {% csrf_token %}
+                    <div class="form-left">
+                        <h2>Información General</h2>
+                            <div class="form-row form-row-1">
+                                <input type="text" name="nombres" id="nombres" class="input-text" value="{{formp.data.nombres}}" placeholder="Nombres" required>
+                            </div>
+                            <div class="form-row form-row-2">
+                                <input type="text" name="apellidos" id="apellidos" class="input-text" value="{{formp.data.apellidos}}" placeholder="Apellidos" required>
+                            </div>
+
+                        <div class="form-row">
+                            <input type="text" name="cedula" class="" id="cedula" value="{{formp.data.cedula}}" placeholder="Nº de Cédula" required>
+                        </div>
+                        <div class="form-row">
+                            <input  type="date" class="form-control col-md-auto" value="{{formp.data.fechaNacimiento}}" name="fechaNacimiento" placeholder="Fecha de Nacimiento" id="date" required>
+                        </div>
+                        <div class="form-row">
+                            <select name="sexo" value="{{formp.data.sexo}}">
+                                <option class="option" value="title">Sexo</option>
+                                <option class="option" value="M">Masculino</option>
+                                <option class="option" value="F">Femenino</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -30px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div>                       
+                        
+                    </div>
+                    <div class="form-right">
+                        <h2>Información de Contacto</h2>
+                        <div class="form-row">
+                            <input type="text" name="celular" class="" id="celular" value="{{formp.data.celular}}" placeholder="Nº Celular" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="text" name="correo" id="correo" class="input-text" value="{{formp.data.correo}}" required pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" placeholder="Correo Electrónico">
+                        </div>
+                        <div class="form-row">
+                            <input type="text" name="direccion" class="" id="direccion" value="{{formp.data.direccion}}" placeholder="Dirección del domicilio" required>
+                        </div>
+         
+                        <div class="form-row-last">
+                            <input type="submit" name="" class="register" value="Registrar Paciente">
+                        </div> 
+
+                    </div>
+                    
+                </form>
+            </div>
+            
+        </div>
+        
+    </body>
+
 
 {% endblock %}

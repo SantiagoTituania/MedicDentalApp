@@ -3,9 +3,13 @@
 {% block titulo %} Pacientes {% endblock %}
 {% block subtitulo %} Lista de Pacientes {% endblock %}
 
+
 {% block contenido %} 
+<br>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-<div class = "container mx-0">
+
+<!--Input para buscar un paciente-->
+<div class = "container mx-0 nav-item active">
     <form class = "form-inline my-2 my-lg-0 mr-4" action ="{% url 'buscar' %}">
         <br>
         <input class = "form-control mr-sm-2 col-lg-6" name="buscarPaciente" type="search" placeholder="Buscar Paciente por su Nombre..." aria-label="Buscar Paciente por su Nombre...">
@@ -13,6 +17,7 @@
     </form>
 </div>
 <br>
+
 
 <div class="card">
     <div class="card-header" >
@@ -30,7 +35,7 @@
                         <th>Cédula</th>
                         <th>F. Nacimiento</th>
                         <th>Sexo</th>
-                        <th>Dirección</th>
+                        {% comment %} <th>Dirección</th> {% endcomment %}
                         <th>Nº Celular</th>
                         <th>Correo</th>
                         <th><center>Acciones</th>
@@ -45,9 +50,8 @@
                         <td>{{ paciente.nombres }}</td>
                         <td>{{ paciente.apellidos }}</td>
                         <td>{{ paciente.cedula }}</td>
-                        <td>{{ paciente.fechaNacimiento}}</td>
-                        <td>{{ paciente.sexo }}</td>
-                        <td>{{ paciente.direccion}}</td>
+                        <td>{{ paciente.fechaNacimiento|date:'d-m-Y'}}</td>
+                        <td>{{ paciente.sexo}}</td>
                         <td>{{ paciente.celular }}</td>
                         <td>{{ paciente.correo }}</td>
                         <td>

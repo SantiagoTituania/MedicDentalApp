@@ -9,6 +9,8 @@ from .models import Historia
 from .forms import HistoriaForm
 from .models import Enfermedad
 from .forms import EnfermedadForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 
 
@@ -42,7 +44,7 @@ def inicioPaciente(request):
     return render(request, 'login/inicioPaciente.html')
 
 def login(request):
-    return render(request, 'login/loginUser.html')
+    return render(request, 'login/login.html')
 
 def consultarCita(request):
     if request.method == "POST":
@@ -73,7 +75,7 @@ def buscarCita(request):
     context = {'citas': citas}
     return render(request, 'login/consultarCita.html', context) # busca
 
-# @login_required
+@login_required
 def inicioAdm(request):
    # return HttpResponse("<h1> Bienvenido a la Clinica Medic Dental</h1>") #imprime un texto html con etiquetas
    return render(request, 'paginas/inicioAdm.html') # busca un archivo .html
@@ -81,24 +83,79 @@ def nostros(request):
     return render(request, 'paginas/nosotros.html') # busca un archivo .html
 
 # Accesos a operaciones de pacientes
+@login_required
 def pacientes(request):
     pacientes = Paciente.objects.all()
     return render(request, 'pacientes/index.html', {'pacientes': pacientes}) # busca un archivo .html
 
+@require_http_methods(["GET","POST"])
 def registrar(request):
-    formulario = PacienteForm(request.POST or None, request.FILES or None)
-    if formulario.is_valid():
-        formulario.save()
-        return redirect('pacientes')
-    return render(request, 'pacientes/registrar.html',{'formulario': formulario}) # busca un archivo .html
+    if request.method == "POST":
+        formp = PacienteForm(request.POST)
+        if formp.is_valid():
+            nombres = formp.cleaned_data["nombres"]
+            apellidos = formp.cleaned_data["apellidos"]
+            cedula = formp.cleaned_data["cedula"]
+            fechaNacimiento = formp.cleaned_data["fechaNacimiento"]
+            sexo = formp.cleaned_data["sexo"]
+            direccion = formp.cleaned_data["direccion"]
+            celular = formp.cleaned_data["celular"]
+            correo = formp.cleaned_data["correo"]
+            pac = Paciente(nombres=nombres, apellidos=apellidos, cedula=cedula, fechaNacimiento=fechaNacimiento, sexo=sexo, direccion=direccion, celular=celular, correo=correo)
+            pac.save()
+            #pacientes
+            
+            return redirect("pacientes")
+            events()
+    else:
+        formp = PacienteForm()
+    return render(request,'pacientes/registrar.html', {"formp": formp})
 
+# def registrar(request):
+#     formulario = PacienteForm(request.POST or None, request.FILES or None)
+#     if formulario.is_valid():
+#         formulario.save()
+#         return redirect('pacientes')
+#     return render(request, 'pacientes/registrar.html',{'formulario': formulario}) # busca un archivo .html
+@require_http_methods(["GET","POST"])
 def modificar(request, id):
-    paciente = Paciente.objects.get(id=id)
-    formulario = PacienteForm(request.POST or None, request.FILES or None,instance=paciente)
-    if formulario.is_valid() and request.POST:
-        formulario.save()
-        return redirect('pacientes')
-    return render(request, 'pacientes/modificar.html', {'formulario': formulario}) # busca un archivo .html
+    # paciente = Paciente.objects.get(id=id)
+    # formulario = PacienteForm(request.POST or None, request.FILES or None,instance=paciente)
+    # if formulario.is_valid() and request.POST:
+    #     formulario.save()
+    #     return redirect('pacientes')
+    # return render(request, 'pacientes/modificar.html', {'formulario': formulario}) # busca un archivo .html - diccionario de python o variable en el contexto
+    try:    
+        pac = Paciente.objects.get(pk=id)
+    except Paciente.DoesNotExist:
+        raise Http404("El paciente no existe!")
+    else:
+        if request.method == "POST":
+            formp = PacienteForm(request.POST or None, request.FILES or None,instance=pac)
+            if formp.is_valid() and request.POST:
+                pac.nombres = formp.cleaned_data["nombres"]
+                pac.apellidos = formp.cleaned_data["apellidos"]
+                pac.cedula = formp.cleaned_data["cedula"]
+                pac.fechaNacimiento = formp.cleaned_data["fechaNacimiento"]
+                pac.sexo = formp.cleaned_data["sexo"]
+                pac.direccion = formp.cleaned_data["direccion"]
+                pac.celular = formp.cleaned_data["celular"]
+                pac.correo = formp.cleaned_data["correo"]
+                pac.save()
+                return redirect('pacientes')
+        else:
+            a = {
+                "nombres": pac.nombres,
+                "apellidos": pac.apellidos,
+                "cedula": pac.cedula,
+                "fechaNacimiento": pac.fechaNacimiento,
+                "sexo": pac.sexo,
+                "direccion": pac.direccion,
+                "celular": pac.celular,
+                "correo": pac.correo,
+            }
+            formp = PacienteForm(a)
+    return render(request,"pacientes/modificar.html", {"formp" : formp, "id" : pac.id})
 
 def eliminar(request, id):
     paciente = Paciente.objects.get(id=id)
@@ -122,6 +179,8 @@ def registrarU(request):
     formularioU = UsuarioForm(request.POST or None, request.FILES or None)
     if formularioU.is_valid():
         formularioU.save()
+        username=formularioU.cleaned_data['nUsuario']
+        messages.success(request, f'Usuario {username} creado')
         return redirect('usuarios')
     return render(request, 'usuarios/registrarUsuarios.html',{'formularioU': formularioU}) # busca un archivo .html
 
@@ -188,7 +247,7 @@ class HistoriaListView(ListView):
     template_name = 'historiaClinica/indexHistoriaC.html'
 
 
-# @login_required
+@login_required
 @require_http_methods(["GET","POST"])
 def lst(request):
     if request.method == "POST":

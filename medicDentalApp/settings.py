@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'medicDentalApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mdapp',
+        'NAME': 'mdapp1',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -118,13 +118,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-LOGIN_REDIRECT_URL = '/citas/login'
+LOGIN_REDIRECT_URL = 'inicioAdm'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [ BASE_DIR / 'static']
+STATIC_URL = '/static/'
+#STATICFILES_DIRS = [ BASE_DIR / 'static']
+STATICFILES_DIRS =(os.path.join(BASE_DIR, 'medicDentalApp/static'),)
 
 
 

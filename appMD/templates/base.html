@@ -7,8 +7,7 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <!-- site metas -->
       <meta name="keywords" content="">
       <meta name="description" content="">
@@ -26,6 +25,7 @@
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      
 
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -78,6 +78,9 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="{% url 'usuarios' %}" >Usuario</a>
                               </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="{% url 'logout' %}" >Cerrar Sesión</a>
+                              </li>
 
                            </ul>
                         </div>
@@ -103,18 +106,26 @@
             </div>
          </div>
       </div>
+      {% if messages %}
+         {% for message in messages %}
+         <div class="notification {{message.tags}}">
+            {{message}}
+         </div>
+         {% endfor %}
+      {% endif %}
       <!-- about -->
-      <div class="about resposive">
+      
+      {% comment %} <div class="about resposive">
          <div class="container-fluid resposive">
-            <div class="row resposive">
-               <div class="col-md-10 offset-md-1 resposive">
+            <div class="row resposive"> {% endcomment %}
+               <div class="col-md-12 offset-md-0.5 resposive">
                   <div class="titlepage">
                      {% block contenido %} {% endblock %}
                   </div>
                </div>
-            </div>
+            {% comment %} </div>
          </div>
-      </div>
+      </div> {% endcomment %}
       <!-- end about -->
      
       <!--  footer -->
@@ -141,6 +152,9 @@
                         <li><a href="yoga.html">Cita Médica</a></li>
                         <li><a href="pricing.html">Lista de Citas</a></li>
                         <li><a href="contact.html">Usuarios</a></li>
+                        <li><a href="contact.html">Cerrar Sesión </a></li>
+                        
+
                      </ul>
                   </div>
                   <div class=" col-md-3">

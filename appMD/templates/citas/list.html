@@ -3,11 +3,14 @@
 {% block subtitulo %}Lista de Citas{% endblock %}
 
 {% block contenido%}
+<br>
 
   <p class="lead">{{ citas|length }} Citas Pendientes</p><br>
   <a href="{% url 'registrarCita' %}" class="btn btn-success ">Agendar Nueva Cita</a>
 <hr>
+<!--formulario que llama a la vista list con un metodo post-->
 <form class="form-inline" action="{% url 'list' %}" method="post" style="margin-bottom: 20px; padding-left: 60%;">
+  <!--token que protege del ataque cross fire un ataque popular en los formularios-->
   {% csrf_token %}
 
   <input type="date" class="form-control col-md-5" value="{{form.data.date|date:'Y-m-d'}}" name="date" placeholder="Date rendez-vous" id="date">
