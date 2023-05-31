@@ -7,6 +7,14 @@ from.models import Enfermedad
 
 
 class PacienteForm(forms.ModelForm):
+    # SEXO_CHOICES = [
+    #     ('M', 'Masculino'),
+    #     ('F', 'Femenino')
+    # ]
+    
+    # sexo = forms.CharField(
+    #     widget=forms.Select(choices=SEXO_CHOICES)
+    # )
     class Meta:
         model = Paciente
         fields = '__all__'

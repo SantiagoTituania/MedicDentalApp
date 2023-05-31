@@ -310,8 +310,8 @@ button {
 
 .header {
      width: 100%;
-     height: 90px;
-     padding: 5px 30px;
+     height: 116px;
+     padding: 15px 30px;
 }
 
 
@@ -910,7 +910,7 @@ button {
 
 .footer {
      background: #001935;
-     padding-top: 30px;
+     padding-top: 90px;
      text-align: center;
 }
 
@@ -1098,7 +1098,7 @@ ul.social_icon li a:hover {
 
 /** endinner page css **/
 
-.inner_page .full_bg {background-color:#09cbf7 !important; background:transparent; }
+.inner_page .full_bg {background-color:#17d2dc !important; background:transparent; }
 
 .inner_page .navigation.navbar {padding-top: 24px !important;}
 .back_re {
@@ -1109,11 +1109,10 @@ ul.social_icon li a:hover {
      text-align: center;
 }
 
-
 .back_re .title h2 {
      color: #fff;
      font-size: 40px;
-     padding: 20px 0;
+     padding: 40px 0;
      font-weight: 600;
      text-transform: capitalize;
      line-height: 35px;

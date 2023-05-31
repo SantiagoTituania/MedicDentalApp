@@ -19,7 +19,7 @@
       <!-- Responsive-->
       <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
       <!-- fevicon -->
-      <link rel="icon" href="{% static 'logo.jpg' %}" type="image/gif" />
+      <link rel="icon" href="{% static 'logoMedic.png' %}" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
       <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
       <!-- Tweaks for older IEs-->
@@ -48,7 +48,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="{% url 'inicioAdm' %}"><img src="{% static 'logo.jpg' %}" height="500" width="145" alt="#" /></a>
+                              <a href="{% url 'inicioAdm' %}"><img src="{% static 'logoMedic.png' %}" height="500" width="145" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -70,10 +70,10 @@
                                  <a class="nav-link" href="{% url 'historiaC' %}">Historia Clínica</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="{% url 'registrarCita' %}">Cita Médica</a>
+                                 <a class="nav-link" href="{% url 'registrarCita' %}">Nueva Cita</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="{% url 'list' %}">Lista de Citas Médicas</a>
+                                 <a class="nav-link" href="{% url 'list' %}">Citas Médicas</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="{% url 'usuarios' %}" >Usuario</a>
@@ -106,13 +106,7 @@
             </div>
          </div>
       </div>
-      {% if messages %}
-         {% for message in messages %}
-         <div class="notification {{message.tags}}">
-            {{message}}
-         </div>
-         {% endfor %}
-      {% endif %}
+    
       <!-- about -->
       
       {% comment %} <div class="about resposive">
@@ -120,7 +114,10 @@
             <div class="row resposive"> {% endcomment %}
                <div class="col-md-12 offset-md-0.5 resposive">
                   <div class="titlepage">
-                     {% block contenido %} {% endblock %}
+                     {% block contenido %} 
+                     
+                     
+                     {% endblock %}
                   </div>
                </div>
             {% comment %} </div>
@@ -130,65 +127,18 @@
      
       <!--  footer -->
       <footer>
-         <div class="footer">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12 offset-md-1">
-                     <div class="newslatter">
-                        <h4>Se partícipe de una nueva era Digital con MEDIC DENTAL V1.0</h4>
-                     </div>
-                  </div>
-                  <div class="col-sm-20">
-                     <div class=" border_top1"></div>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-md-4">
-                     <h3>Enlaces Rápidos</h3>
-                     <ul class="link_menu">
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="about.html"> Pacientes</a></li>
-                        <li><a href="classes.html">Historias Clínicas</a></li>
-                        <li><a href="yoga.html">Cita Médica</a></li>
-                        <li><a href="pricing.html">Lista de Citas</a></li>
-                        <li><a href="contact.html">Usuarios</a></li>
-                        <li><a href="contact.html">Cerrar Sesión </a></li>
-                        
-
-                     </ul>
-                  </div>
-                  <div class=" col-md-3">
-                     <h3>Información: </h3>
-                     <p class="many">
-                        Aplicacion web "Medic Dental", Gestión de información de pacientes y agendamiento de citas médicas
-                     </p>
-                  </div>
-                  <div class="col-lg-3 offset-mdlg-2     col-md-4 offset-md-1">
-                     <h3>Contact </h3>
-                     <ul class="conta">
-                        <li><i class="fa fa-map-marker" aria-hidden="true"></i> Riobamba - Ecuador</li>
-                        <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> ftituania@espoch.edu.ec</a></li>
-                        <li><i class="fa fa-mobile" aria-hidden="true"></i> + 593 980545317</li>
-                     </ul>
-                     <ul class="social_icon">
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
+         {% comment %} <div class="footer"> {% endcomment %}
+            
             <div class="copyright">
                <div class="container">
                   <div class="row">
                      <div class="col-md-10 offset-md-1">
-                        <p>© 2023 All Rights Reserved. Design by Franklin Tituaña</a></p>
+                        <p>© 2023 All Rights Reserved. Developed and designed by Franklin Tituaña</a></p>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
+         {% comment %} </div> {% endcomment %}
       </footer>
       <!-- end footer -->
       <!-- Javascript files-->
@@ -198,6 +148,20 @@
       <!-- sidebar -->
       <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
       <script src="{% static 'js/custom.js' %}"></script>
-
+      
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      {% if messages %}
+         {% for message in messages %}
+         <script>
+            Swal.fire({
+               "title": "Felicitaciones",
+               "text": "{{ message }}",
+               "icon": "success"
+            })
+         </script>
+            
+         {% endfor %}
+      {% endif %}
+{% block js %}{% endblock%}
    </body>
 </html>

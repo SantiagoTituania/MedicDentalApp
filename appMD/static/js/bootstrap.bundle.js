@@ -190,7 +190,7 @@
             var valueType = value && Util.isElement(value) ? 'element' : toType(value);
 
             if (!new RegExp(expectedTypes).test(valueType)) {
-              throw new Error(componentName.toUpperCase() + ": " + ("Option \"" + property + "\" provided type \"" + valueType + "\" ") + ("but expected type \"" + expectedTypes + "\"."));
+              throw new Error(componentName.tocapitalize() + ": " + ("Option \"" + property + "\" provided type \"" + valueType + "\" ") + ("but expected type \"" + expectedTypes + "\"."));
             }
           }
         }
@@ -1198,7 +1198,7 @@
           $$$1(_this._element).trigger(Event.SHOWN);
         };
 
-        var capitalizedDimension = dimension[0].toUpperCase() + dimension.slice(1);
+        var capitalizedDimension = dimension[0].tocapitalize() + dimension.slice(1);
         var scrollSize = "scroll" + capitalizedDimension;
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
         $$$1(this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
@@ -2373,7 +2373,7 @@
    */
   function getSupportedPropertyName(property) {
     var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
-    var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
+    var upperProp = property.charAt(0).tocapitalize() + property.slice(1);
 
     for (var i = 0; i < prefixes.length; i++) {
       var prefix = prefixes[i];
@@ -5364,7 +5364,7 @@
 
 
       _proto._getAttachment = function _getAttachment(placement) {
-        return AttachmentMap[placement.toUpperCase()];
+        return AttachmentMap[placement.tocapitalize()];
       };
 
       _proto._setListeners = function _setListeners() {

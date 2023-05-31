@@ -3563,8 +3563,8 @@ S2.define('select2/data/tags',[
           }, true)
         );
 
-        var optionText = (option.text || '').toUpperCase();
-        var paramsTerm = (params.term || '').toUpperCase();
+        var optionText = (option.text || '').tocapitalize();
+        var paramsTerm = (params.term || '').tocapitalize();
 
         var checkText = optionText === paramsTerm;
 
@@ -4862,8 +4862,8 @@ S2.define('select2/defaults',[
         return matcher(params, match);
       }
 
-      var original = stripDiacritics(data.text).toUpperCase();
-      var term = stripDiacritics(params.term).toUpperCase();
+      var original = stripDiacritics(data.text).tocapitalize();
+      var term = stripDiacritics(params.term).tocapitalize();
 
       // Check if the text contains the term
       if (original.indexOf(term) > -1) {

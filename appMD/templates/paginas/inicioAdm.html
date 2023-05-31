@@ -1,26 +1,23 @@
 {% extends 'base.html' %}
-
+ 
 {% block titulo %} Inicio {% endblock %}
 {% block subtitulo %} Bienvenido {{user.username | upper}} {% endblock %}
-
+     
 {% block contenido %} 
-
-<div class="row align-items-md-stretch">
-   <center> <div class="col-md-8">
-        <div
-            class="h-100 p-5 text-black bg-white border rounded-3">
+<br> 
+<div class="container-fluid resposive row resposive col-md-10 offset-md-1 resposive titlepage">
+   <center> <div class="col-md-10">
+    
+    <div class="h-50 pt-2 text-black bg-white border rounded-5">
             <h2>Renovar tu sonrisa, ¡ Tu mejor elección !</h2>
 
-               <center>  <img src="static/logo.jpg" height="300" ></center>
+               <center>  <img class = "border rounded-5" src="static/logo.jpg" width="500" height="500" ></center>
 
             
         </div>
     </div>
 
-
-    
-
-    <div class="col-md-8">
+    <div class="col-md-10">
         <div class="row">
             <div class="col-md-12">
                 
@@ -33,6 +30,4 @@
     </div>
 </center>
 </div> 
-
-
 {% endblock %}

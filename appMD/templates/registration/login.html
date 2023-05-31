@@ -123,10 +123,10 @@
 <!--inicio del nuevo login-->
 <div class="limiter">
 	<div class="container-login100" style="background-image: url('/static/images/bg-01.jpg');">
-		<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-0 p-b-10">
 			<form class="login100-form validate-form" method="post" action="{% url 'login' %}">
 				{% csrf_token %}
-				<center> <img src="/static/login1.gif" height="300" width="400"></center>
+				<center> <img src="/static/login1.gif" height="50" width="200"></center>
 				<div class="wrap-input100 validate-input m-b-23" data-validate = "¡Debe inrgesar el nombre de usuario!">
 					<span class="label-input100">Nombre de usuario</span>
 					<input class="input100 form-control" type="text" name="username" placeholder="Ingrese su nombre de usuario">
@@ -139,8 +139,8 @@
 					<span class="focus-input100" data-symbol="&#xf190;"></span>
 				</div>
 				
-				<div class="text-right p-t-8 p-b-31">
-					<a href="#">
+				<div class="text-center p-t-5 p-b-5">
+					<a >
 						¡Nunca compartiremos sus credenciales.!
 					</a>
 				</div>
@@ -216,7 +216,7 @@
 						</p>
 					</div>
 					<div class="col-lg-3 offset-mdlg-2     col-md-4 offset-md-1">
-						<h3>Contact </h3>
+						<h3>Contactos </h3>
 						<ul class="conta">
 							<li><i class="fa fa-map-marker" aria-hidden="true"></i> Riobamba - Ecuador</li>
 							<li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> ftituania@espoch.edu.ec</a></li>

@@ -65,11 +65,11 @@
                             <input  type="date" class="form-control col-md-auto" value="{{formp.data.fechaNacimiento|date:'Y-m-d'}}" name="fechaNacimiento" placeholder="Fecha de Nacimiento" id="fechaNacimiento" required>
                         </div>
                         <div class="form-row">
-                            <select name="sexo" value="{{formp.data.sexo}}" id="sexo">
-                                <option class="option" value="title">Sexo</option>
+                            <select name="sexo" value={{formp.sexo}}</select>
+                                {% comment %} <option class="option" value="title">Sexo</option>
                                 <option class="option" value="M">Masculino</option>
-                                <option class="option" value="F">Femenino</option>
-                            </select>
+                                <option class="option" value="F">Femenino</option> {% endcomment %}
+                            
                             <span class="select-btn" style="margin-top: -30px">
                                 <i class="fa-solid fa-chevron-down "></i>    
                             </span>

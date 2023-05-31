@@ -930,7 +930,7 @@ function isModifierEnabled(modifiers, modifierName) {
  */
 function getSupportedPropertyName(property) {
   var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
-  var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
+  var upperProp = property.charAt(0).tocapitalize() + property.slice(1);
 
   for (var i = 0; i < prefixes.length - 1; i++) {
     var prefix = prefixes[i];

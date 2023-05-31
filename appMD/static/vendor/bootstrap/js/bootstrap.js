@@ -166,7 +166,7 @@ var Util = function ($) {
           var valueType = value && isElement(value) ? 'element' : toType(value);
 
           if (!new RegExp(expectedTypes).test(valueType)) {
-            throw new Error(componentName.toUpperCase() + ': ' + ('Option "' + property + '" provided type "' + valueType + '" ') + ('but expected type "' + expectedTypes + '".'));
+            throw new Error(componentName.tocapitalize() + ': ' + ('Option "' + property + '" provided type "' + valueType + '" ') + ('but expected type "' + expectedTypes + '".'));
           }
         }
       }
@@ -1202,7 +1202,7 @@ var Collapse = function ($) {
         return;
       }
 
-      var capitalizedDimension = dimension[0].toUpperCase() + dimension.slice(1);
+      var capitalizedDimension = dimension[0].tocapitalize() + dimension.slice(1);
       var scrollSize = 'scroll' + capitalizedDimension;
 
       $(this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(TRANSITION_DURATION);
@@ -1585,7 +1585,7 @@ var Dropdown = function ($) {
     Dropdown.prototype._getConfig = function _getConfig(config) {
       var elementData = $(this._element).data();
       if (elementData.placement !== undefined) {
-        elementData.placement = AttachmentMap[elementData.placement.toUpperCase()];
+        elementData.placement = AttachmentMap[elementData.placement.tocapitalize()];
       }
 
       config = $.extend({}, this.constructor.Default, $(this._element).data(), config);
@@ -3362,7 +3362,7 @@ var Tooltip = function ($) {
     // private
 
     Tooltip.prototype._getAttachment = function _getAttachment(placement) {
-      return AttachmentMap[placement.toUpperCase()];
+      return AttachmentMap[placement.tocapitalize()];
     };
 
     Tooltip.prototype._setListeners = function _setListeners() {

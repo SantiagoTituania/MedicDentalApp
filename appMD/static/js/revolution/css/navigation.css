@@ -70,7 +70,7 @@ border-radius:30px 0px 0px 30px;
   -webkit-transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
   transform:translateX(200px);  
-  text-transform:uppercase;
+  text-transform:capitalize;
   color:#000;
   font-weight:400;
   font-size:14px;
@@ -581,7 +581,7 @@ website:    http://www.themepunch.com
   -webkit-transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
   transform:translateX(200px);  
-  text-transform:uppercase;
+  text-transform:capitalize;
   color:#fff;
   font-weight:600;
   font-size:13px;
@@ -752,7 +752,7 @@ opacity:1
     color:#a8d8ee;
     font-size:13px;
     font-weight:700;
-    text-transform:uppercase;
+    text-transform:capitalize;
     font-family:"Roboto Slab"
     margin-bottom:5px;
 }
@@ -1305,7 +1305,7 @@ website:    http://www.themepunch.com
 }
 .hebe .tp-arr-titleholder {
   position:relative;
-  text-transform:uppercase;
+  text-transform:capitalize;
   color:#fff;
   font-weight:600;
   font-size:12px;
@@ -1413,7 +1413,7 @@ border-radius:6px;
     color:#a8d8ee;
     font-size:13px;
     font-weight:700;
-    text-transform:uppercase;
+    text-transform:capitalize;
     font-family:"Roboto Slab"
     margin-bottom:5px;
 }
@@ -1699,7 +1699,7 @@ website:    http://www.themepunch.com
     color:#fff;
     font-size:16px;
     font-weight:800;
-    text-transform:uppercase;
+    text-transform:capitalize;
    line-height:19px;
 }
 

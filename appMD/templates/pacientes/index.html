@@ -1,4 +1,22 @@
 {% extends 'base.html' %}
+{% block js%}
+<script>
+    function eliminarPaciente(id){
+        Swal.fire({
+            "title": "¿Estás seguro?",
+            "text": "Esta acción no se puede deshacer",
+            "icon": "question",
+            "showCancelButton": true,
+            "cancelButtonText":"No, Cancelar",
+            "confirmButtonText":"Si, Eliminar",
+            "confirmButtonTextColor":"black",
+            "confirmButtonColor":"#dc3545",
+            "cancelButtonColor":"#ffc107",
+         })
+    }
+    
+ </script>
+{% endblock%}
 
 {% block titulo %} Pacientes {% endblock %}
 {% block subtitulo %} Lista de Pacientes {% endblock %}
@@ -9,7 +27,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
 <!--Input para buscar un paciente-->
-<div class = "container mx-0 nav-item active">
+<div class = "container mx-100 nav-item active">
     <form class = "form-inline my-2 my-lg-0 mr-4" action ="{% url 'buscar' %}">
         <br>
         <input class = "form-control mr-sm-2 col-lg-6" name="buscarPaciente" type="search" placeholder="Buscar Paciente por su Nombre..." aria-label="Buscar Paciente por su Nombre...">
@@ -57,7 +75,7 @@
                         <td>
                             <a name="" id="" class="btn btn-warning" href="{% url 'modificar' paciente.id %}" role="button"><i class="fa-solid fa-pencil"></i> Modificar</a> 
                             |
-                            <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' paciente.id %}" role="button"><i class="fa-solid fa-trash"></i> Eliminar</a>
+                            <a name="" id="" class="btn btn-danger" href="#" onclick="eliminarPaciente({{paciente.id}})" role="button"><i class="fa-solid fa-trash"></i> Eliminar</a>
                         </td>
 
                     </tr>
