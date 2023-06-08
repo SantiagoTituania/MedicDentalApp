@@ -4337,6 +4337,8 @@ input[type="button"].btn-block {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+  margin-right: 20;
+  margin-left: 20;
 }
 
 .card > hr {
@@ -6170,7 +6172,7 @@ button.bg-dark:focus {
 }
 
 .rounded {
-  border-radius: 0.25rem !important;
+  border-radius: 0px;
 }
 
 .rounded-top {
@@ -8855,6 +8857,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .text-muted {
+  text-align: center;
   color: #6c757d !important;
 }
 

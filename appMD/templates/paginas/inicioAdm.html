@@ -1,33 +1,39 @@
 {% extends 'base.html' %}
  
 {% block titulo %} Inicio {% endblock %}
-{% block subtitulo %} Bienvenido {{user.username | upper}} {% endblock %}
+{% block subtitulo %} Bienvenido {{user.username | lower}} {% endblock %}
      
 {% block contenido %} 
 <br> 
-<div class="container-fluid resposive row resposive col-md-10 offset-md-1 resposive titlepage">
-   <center> <div class="col-md-10">
-    
-    <div class="h-50 pt-2 text-black bg-white border rounded-5">
-            <h2>Renovar tu sonrisa, ¡ Tu mejor elección !</h2>
-
-               <center>  <img class = "border rounded-5" src="static/logo.jpg" width="500" height="500" ></center>
-
-            
-        </div>
-    </div>
-
-    <div class="col-md-10">
-        <div class="row">
-            <div class="col-md-12">
+<center><div class="">
+    <div class="container-fluid resposive">
+       <div class="row resposive">
+          <div class="col-md-12 offset-md-12 resposive">
+             <div class="titlepage">
+               {% comment %} <div class="row align-items-md-stretch"> {% endcomment %}
+                   <center> <div class="col-md-12">
+                        <div class="h-50 pt-2 text-black bg-white border rounded">
+                            <h2>¡ Los mejores profesionales !</h2><br>
+                               <center>  <img class = " rounded-5" src="static/logo.jpg" height="500" width="500" ></center>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                
+                        <div
+                            class="h-100 pt-3 pb-0 bg-white  rounded-3">
+                            <h2>Bienvenido a Medic Dental v.1.0</h2>
+                            <p>Aplicación Web para la Gestión de información de Pacientes y Agendamiento de Citas Médicas.</p>
                 
-        <div
-            class="h-100 p-5 bg-white border rounded-3">
-            <h2>Bienvenido a Medic Dental v.1.0</h2>
-            <p>Aplicación Web para la Gestión de información de Pacientes y Agendamiento de Citas Médicas.</p>
-
-        </div>
+                        </div>
+                    </div>
+                </center>
+                </div> 
+             </div>
+          </div>
+       </div>
     </div>
-</center>
-</div> 
+ </div></center>
+
 {% endblock %}

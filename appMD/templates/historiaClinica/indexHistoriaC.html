@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
-{% block titulo %} Historia clinica {% endblock %}
-{% block subtitulo %} Lista de Historias Clinicas {% endblock %}
+{% block titulo %} Historia clínica {% endblock %}
+{% block subtitulo %} Lista de Historias Clínicas {% endblock %}
 {% block contenido %} 
+<br>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-<div class = "container mx-0">
+<div class = "container mx-0 nav-item active">
     <form class = "form-inline my-2 my-lg-0 mr-4" action ="{% url 'buscarH' %}">
         <br>
-        <input class = "form-control mr-sm-2 col-lg-6" name="buscarHistoria" type="search" placeholder="Buscar Paciente por su Nombre..." aria-label="Buscar Historia por Nombre del Paciente">
+        <input class = "form-control mr-sm-2 col-lg-6" name="buscarHistoria" type="search" placeholder="Buscar paciente por número de historia clínica" aria-label="Buscar Historia por Nombre del Paciente">
         <button class = "btn btn-primary my-2 my-sm-0" type="submit" >Buscar</button>
     </form>
 </div>
@@ -15,21 +16,20 @@
 
 <div class="card">
     <div class="card-header" >
-        <a name="" id="" class="btn btn-success" href="{% url 'registrarH' %}" role="button"><i class="fa-solid fa-user-plus"></i> Registrar Nueva Historia Clinica</a>
+        <a name="" id="" class="btn btn-success" href="{% url 'registrarH' %}" role="button"><i class="fa-solid fa-user-plus"></i> Registrar Nueva Historia Clínica</a>
     </div>
     
-    <div class="card-body-resposive">
-    </br>
-        <h4 class="card-title">Lista de Historias Clínicas</h4>
-            <table class="table table-primary" width=30>
+    <div class="card-body">
+    
+            <table class="table  border rounded" >
                 <thead>
-                    <tr>
+                    <tr class="table-primary rounded border">
                         <th>Nº HC</th>
                         <th>Nombres</th>
                         <th>Apellidos</th>
                         <th>Cédula</th>
                         <th>Motivo</th>
-                        <th>HISTORIA</th>
+                        
                         <th><center>Acciones</th>
                         
 
@@ -41,13 +41,13 @@
                         <td>{{ historia.id }}</td>
                         <td>{{ historia.paciente.nombres }}</td>
                         <td>{{ historia.paciente.apellidos }}</td>
-                        <td>{{ historia.paciente.cedula }}</td>>
-                        <td>{{ historia.motivoConsulta }}</td>>
-                        <td>{{ historia.enfermedad.id }}</td>>
+                        <td>{{ historia.paciente.cedula }}</td>
+                        <td>{{ historia.motivoConsulta }}</td>
+                        
                         <td>
-                            {% comment %} <a name="" id="" class="btn btn-warning" href="{% url 'modificar' paciente.id %}" role="button"><i class="fa-solid fa-pencil"></i> Modificar</a> 
+                            <a name="" id="" class="btn btn-warning" href="{% url 'modificarH' historia.id %}" role="button"><i class="fa-solid fa-pencil"></i> Modificar</a> 
                             |
-                            <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' paciente.id %}" role="button"><i class="fa-solid fa-trash"></i> Eliminar</a> {% endcomment %}
+                            <a name="" id="" class="btn btn-danger" href="#" onclick="eliminarPaciente({{paciente.id}})" role="button"><i class="fa-solid fa-trash"></i> Eliminar</a>
                         </td>
 
                     </tr>
@@ -57,7 +57,7 @@
         
         
     </div>
-    <div class="card-footer text-muted">
+    <div class="card-footer text-muted centertext">
        Lista de Historias Clínicas de MedicDental v.1.0
     </div>
 </div> 

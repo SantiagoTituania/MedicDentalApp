@@ -3,6 +3,15 @@
 {% block subtitulo %}Lista de Citas{% endblock %}
 
 {% block contenido%}
+<div class = "  container mx-0 nav-item active">
+  <form class = "form-inline my-2 my-lg-0 mr-xl-1" action ="{% url 'buscarC' %}">
+      <br>
+      <input class = "form-control mr-sm-2 col-lg-6" name="buscarCita" type="search" placeholder="Buscar Paciente por su Nombre..." aria-label="Buscar Paciente por su Nombre...">
+      <button class = "btn btn-primary my-2 my-sm-0" type="submit" >Buscar</button>
+  </form>
+</div>
+<br>
+
 <br>
 
   <p class="lead">{{ citas|length }} Citas Pendientes</p><br>

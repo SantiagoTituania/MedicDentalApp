@@ -137,12 +137,6 @@ def registrar(request):
 #     return render(request, 'pacientes/registrar.html',{'formulario': formulario}) # busca un archivo .html
 @require_http_methods(["GET", "POST"])
 def modificar(request, id):
-    # paciente = Paciente.objects.get(id=id)
-    # formulario = PacienteForm(request.POST or None, request.FILES or None,instance=paciente)
-    # if formulario.is_valid() and request.POST:
-    #     formulario.save()
-    #     return redirect('pacientes')
-    # return render(request, 'pacientes/modificar.html', {'formulario': formulario}) # busca un archivo .html - diccionario de python o variable en el contexto
     try:
         pac = Paciente.objects.get(pk=id)
     except Paciente.DoesNotExist:
@@ -217,14 +211,12 @@ def registrarU(request):
 
 def modificarU(request, id):
     usuario = Usuario.objects.get(id=id)
-    formularioU = UsuarioForm(
-        request.POST or None, request.FILES or None, instance=usuario
-    )
-    if formularioU.is_valid() and request.POST:
-        formularioU.save()
+    formH = UsuarioForm(request.POST or None, request.FILES or None, instance=usuario)
+    if formH.is_valid() and request.POST:
+        formH.save()
         return redirect("usuarios")
     return render(
-        request, "usuarios/modificarUsuarios.html", {"formularioU": formularioU}
+        request, "usuarios/modificarUsuarios.html", {"formH": formH}
     )  # busca un archivo .html
 
 
@@ -250,41 +242,92 @@ def historiaC(request):
         request, "historiaClinica/indexHistoriaC.html", {"historias": historias}
     )  # busca un archivo .html
 
-    # def registrarH(request):
-    formularioH = HistoriaForm(request.POST or None, request.FILES or None)
-    if formularioH.is_valid():
-        formularioH.save()
-        return redirect("historiaC")
-    return render(
-        request, "historiaClinica/registrarHistoriaC.html", {"formularioH": formularioH}
-    )  # busca un archivo .html
 
-
+@require_http_methods(["GET", "POST"])
 def registrarH(request):
-    formularioH = HistoriaForm(request.POST or None, request.FILES or None)
-    if formularioH.is_valid():
-        formularioH.save()
-        return redirect("historiaC")
-    return render(
-        request, "historiaClinica/registrarHistoriaC.html", {"formularioH": formularioH}
-    )  # busca un archivo .html
-
-
-def enfermedades(request):
-    enfermedades = Enfermedad.objects.all()
-    return render(
-        request, "historiaClinica/indexHistoriaC.html", {"enfermedades": enfermedades}
-    )  # busca un archivo .html
-
-
-def enfermedad(request):
-    formularioE = EnfermedadForm(request.POST or None, request.FILES or None)
-    if formularioE.is_valid():
-        formularioE.save()
-        return redirect("historiaC")
-    return render(
-        request, "historiaClinica/registrarHistoriaC.html", {"formularioE": formularioE}
-    )  # busca un archivo .html
+    if request.method == "POST":
+        formH = HistoriaForm(request.POST)
+        if formH.is_valid():
+            paciente = formH.cleaned_data["paciente"]
+            motivoConsulta = formH.cleaned_data["motivoConsulta"]
+            antibioticosAlergia = formH.cleaned_data["antibioticosAlergia"]
+            anestesiaAlergia = formH.cleaned_data["anestesiaAlergia"]
+            hemorragias = formH.cleaned_data["hemorragias"]
+            sida = formH.cleaned_data["sida"]
+            tuberculosis = formH.cleaned_data["tuberculosis"]
+            asma = formH.cleaned_data["asma"]
+            diabetes = formH.cleaned_data["diabetes"]
+            hipertension = formH.cleaned_data["hipertension"]
+            cardiacas = formH.cleaned_data["cardiacas"]
+            otros = formH.cleaned_data["otros"]
+            fechaTratamiento1 = formH.cleaned_data["fechaTratamiento1"]
+            desTratamiento1 = formH.cleaned_data["desTratamiento1"]
+            fechaTratamiento2 = formH.cleaned_data["fechaTratamiento2"]
+            desTratamiento2 = formH.cleaned_data["desTratamiento2"]
+            fechaTratamiento3 = formH.cleaned_data["fechaTratamiento3"]
+            desTratamiento3 = formH.cleaned_data["desTratamiento3"]
+            fechaTratamiento4 = formH.cleaned_data["fechaTratamiento4"]
+            desTratamiento4 = formH.cleaned_data["desTratamiento4"]
+            presionArterial = formH.cleaned_data["presionArterial"]
+            frecuenciaCardiaca = formH.cleaned_data["frecuenciaCardiaca"]
+            temperatura = formH.cleaned_data["temperatura"]
+            frecuenciaRespiratoria = formH.cleaned_data["frecuenciaRespiratoria"]
+            labios = formH.cleaned_data["labios"]
+            mejillas = formH.cleaned_data["mejillas"]
+            maxilarSuperior = formH.cleaned_data["maxilarSuperior"]
+            maxilarInferior = formH.cleaned_data["maxilarInferior"]
+            lengua = formH.cleaned_data["lengua"]
+            paladar = formH.cleaned_data["paladar"]
+            piso = formH.cleaned_data["piso"]
+            carrillo = formH.cleaned_data["carrillo"]
+            glandulasSalivales = formH.cleaned_data["glandulasSalivales"]
+            orofaringe = formH.cleaned_data["orofaringe"]
+            atm = formH.cleaned_data["atm"]
+            ganglios = formH.cleaned_data["ganglios"]
+            h = Historia(
+                paciente=paciente,
+                motivoConsulta=motivoConsulta,
+                antibioticosAlergia=antibioticosAlergia,
+                anestesiaAlergia=anestesiaAlergia,
+                hemorragias=hemorragias,
+                sida=sida,
+                tuberculosis=tuberculosis,
+                asma=asma,
+                diabetes=diabetes,
+                hipertension=hipertension,
+                cardiacas=cardiacas,
+                otros=otros,
+                fechaTratamiento1=fechaTratamiento1,
+                desTratamiento1=desTratamiento1,
+                fechaTratamiento2=fechaTratamiento2,
+                desTratamiento2=desTratamiento2,
+                fechaTratamiento3=fechaTratamiento3,
+                desTratamiento3=desTratamiento3,
+                fechaTratamiento4=fechaTratamiento4,
+                desTratamiento4=desTratamiento4,
+                presionArterial=presionArterial,
+                frecuenciaCardiaca=frecuenciaCardiaca,
+                temperatura=temperatura,
+                frecuenciaRespiratoria=frecuenciaRespiratoria,
+                labios=labios,
+                mejillas=mejillas,
+                maxilarSuperior=maxilarSuperior,
+                maxilarInferior=maxilarInferior,
+                lengua=lengua,
+                paladar=paladar,
+                piso=piso,
+                carrillo=carrillo,
+                glandulasSalivales=glandulasSalivales,
+                orofaringe=orofaringe,
+                atm=atm,
+                ganglios=ganglios,
+            )
+            h.save()
+            return HttpResponseRedirect("/historiaC")
+            events()
+    else:
+        formH = HistoriaForm()
+    return render(request, "historiaClinica/registrarHistoriaC.html", {"formH": formH})
 
 
 def buscarH(request):
@@ -295,9 +338,109 @@ def buscarH(request):
     return render(request, "historiaClinica/indexHistoriaC.html", context)  # busca
 
 
-class HistoriaListView(ListView):
-    model = Historia, Enfermedad
-    template_name = "historiaClinica/indexHistoriaC.html"
+@require_http_methods(["GET", "POST"])
+def modificarH(request, id):
+    try:
+        h = Historia.objects.get(pk=id)
+    except Historia.DoesNotExist:
+        raise Http404("La historia no existe!")
+    else:
+        if request.method == "POST":
+            formH = HistoriaForm(
+                request.POST or None, request.FILES or None, instance=h
+            )
+            if formH.is_valid() and request.POST:
+                h.paciente = formH.cleaned_data["paciente"]
+                h.motivoConsulta = formH.cleaned_data["motivoConsulta"]
+                h.antibioticosAlergia = formH.cleaned_data["antibioticosAlergia"]
+                h.anestesiaAlergia = formH.cleaned_data["anestesiaAlergia"]
+                h.hemorragias = formH.cleaned_data["hemorragias"]
+                h.sida = formH.cleaned_data["sida"]
+                h.tuberculosis = formH.cleaned_data["tuberculosis"]
+                h.asma = formH.cleaned_data["asma"]
+                h.diabetes = formH.cleaned_data["diabetes"]
+                h.hipertension = formH.cleaned_data["hipertension"]
+                h.cardiacas = formH.cleaned_data["cardiacas"]
+                h.otros = formH.cleaned_data["otros"]
+                h.fechaTratamiento1 = formH.cleaned_data["fechaTratamiento1"]
+                h.desTratamiento1 = formH.cleaned_data["desTratamiento1"]
+                h.fechaTratamiento2 = formH.cleaned_data["fechaTratamiento2"]
+                h.desTratamiento2 = formH.cleaned_data["desTratamiento2"]
+                h.fechaTratamiento3 = formH.cleaned_data["fechaTratamiento3"]
+                h.desTratamiento3 = formH.cleaned_data["desTratamiento3"]
+                h.fechaTratamiento4 = formH.cleaned_data["fechaTratamiento4"]
+                h.desTratamiento4 = formH.cleaned_data["desTratamiento4"]
+                h.presionArterial = formH.cleaned_data["presionArterial"]
+                h.frecuenciaCardiaca = formH.cleaned_data["frecuenciaCardiaca"]
+                h.temperatura = formH.cleaned_data["temperatura"]
+                h.frecuenciaRespiratoria = formH.cleaned_data["frecuenciaRespiratoria"]
+                h.labios = formH.cleaned_data["labios"]
+                h.mejillas = formH.cleaned_data["mejillas"]
+                h.maxilarSuperior = formH.cleaned_data["maxilarSuperior"]
+                h.maxilarInferior = formH.cleaned_data["maxilarInferior"]
+                h.lengua = formH.cleaned_data["lengua"]
+                h.paladar = formH.cleaned_data["paladar"]
+                h.piso = formH.cleaned_data["piso"]
+                h.carrillo = formH.cleaned_data["carrillo"]
+                h.glandulasSalivales = formH.cleaned_data["glandulasSalivales"]
+                h.orofaringe = formH.cleaned_data["orofaringe"]
+                h.atm = formH.cleaned_data["atm"]
+                h.ganglios = formH.cleaned_data["ganglios"]
+                # messages.success(request, "Modificado correctamente")
+                return redirect("/historiaC")
+        else:
+            hh = {
+                "paciente": h.paciente,
+                "motivoConsulta": h.motivoConsulta,
+                "antibioticosAlergia": h.antibioticosAlergia,
+                "anestesiaAlergia": h.anestesiaAlergia,
+                "hemorragias": h.hemorragias,
+                "sida": h.sida,
+                "tuberculosis": h.tuberculosis,
+                "asma": h.asma,
+                "diabetes": h.diabetes,
+                "hipertension": h.hipertension,
+                "cardiacas": h.cardiacas,
+                "otros": h.otros,
+                "fechaTratamiento1": h.fechaTratamiento1,
+                "desTratamiento1": h.desTratamiento1,
+                "fechaTratamiento2": h.fechaTratamiento2,
+                "desTratamiento2": h.desTratamiento2,
+                "fechaTratamiento3": h.fechaTratamiento3,
+                "desTratamiento3": h.desTratamiento3,
+                "fechaTratamiento4": h.fechaTratamiento4,
+                "desTratamiento4": h.desTratamiento4,
+                "presionArterial": h.presionArterial,
+                "frecuenciaCardiaca": h.frecuenciaCardiaca,
+                "temperatura": h.temperatura,
+                "frecuenciaRespiratoria": h.frecuenciaRespiratoria,
+                "labios": h.labios,
+                "mejillas": h.mejillas,
+                "maxilarSuperior": h.maxilarSuperior,
+                "maxilarInferior": h.maxilarInferior,
+                "lengua": h.lengua,
+                "paladar": h.paladar,
+                "piso": h.piso,
+                "carrillo": h.carrillo,
+                "glandulasSalivales": h.glandulasSalivales,
+                "orofaringe": h.orofaringe,
+                "atm": h.atm,
+                "ganglios": h.ganglios,
+            }
+            formH = HistoriaForm(hh)
+    return render(
+        request, "historiaClinica/modificarHistoriaC.html", {"formH": formH, "id": h.id}
+    )
+
+
+def buscarC(request):
+    citas = Cita.objects.all()
+    buscarCita = request.GET["buscarCita"]
+    citas = Cita.objects.filter(id__icontains=buscarCita)
+    context = {"citas": citas}
+    return render(request, "citas/list.html", {"citas": citas})
+
+    # buscacitas
 
 
 @login_required

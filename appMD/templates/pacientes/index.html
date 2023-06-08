@@ -13,6 +13,11 @@
             "confirmButtonColor":"#dc3545",
             "cancelButtonColor":"#ffc107",
          })
+         .then(function(result){
+            if(result.isConfirmed){
+                window.location.href = '/eliminar/'+id+''
+            }
+         })
     }
     
  </script>
@@ -27,8 +32,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 
 <!--Input para buscar un paciente-->
-<div class = "container mx-100 nav-item active">
-    <form class = "form-inline my-2 my-lg-0 mr-4" action ="{% url 'buscar' %}">
+<div class = "  container mx-0 nav-item active">
+    <form class = "form-inline my-2 my-lg-0 mr-xl-1" action ="{% url 'buscar' %}">
         <br>
         <input class = "form-control mr-sm-2 col-lg-6" name="buscarPaciente" type="search" placeholder="Buscar Paciente por su Nombre..." aria-label="Buscar Paciente por su Nombre...">
         <button class = "btn btn-primary my-2 my-sm-0" type="submit" >Buscar</button>
@@ -38,15 +43,15 @@
 
 
 <div class="card">
-    <div class="card-header" >
+    <div class="card-header " >
         <a name="" id="" class="btn btn-success" href="{% url 'registrar' %}" role="button"><i class="fa-solid fa-user-plus"></i> Registrar Nuevo Paciente</a>
     </div>
     
-    <div class="card-body-resposive">
+    <div class="card-body">
      
-      <table class="table">
+      <table class="table  border rounded">
                 <thead>
-                    <tr class="table-primary">
+                    <tr class="table-primary rounded border">
                         <th>Código</th>
                         <th>Nombres</th>
                         <th>Apellidos</th>
@@ -85,7 +90,7 @@
         
         
     </div>
-    <div class="card-footer text-muted">
+    <div class="card-footer text-muted centertext">
        Lista de Pacientes de MedicDental v.1.0
     </div>
 </div> 

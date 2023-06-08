@@ -3660,6 +3660,8 @@ tbody.collapse.show {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+  margin-right: 20;
+  margin-left: 20;
 }
 
 .card-body {

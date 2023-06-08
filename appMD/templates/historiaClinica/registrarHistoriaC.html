@@ -1,29 +1,450 @@
 {% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> 
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+{% block subtitulo %} Registrar nueva Historia clínica del paciente {% endblock %} 
+{% block contenido %}
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/montserrat-font.css' %}">
+<link rel="stylesheet" href="{% static 'style1.css' %}"/>
+<link rel="stylesheet" href="{% static 'style1.css' %}"/>
+    
+<body class="form-v10">
+    
+        <div class="page-content">
+            
+            <div class="form-v10-content">
 
-{% block titulo %} Registrar Nueva Historia Clínica del Paciente {% endblock %}
+                
+                <br>
+                <form class="form-detail" action="{% url 'registrarH' %}" method="post"id="myform" >
+                    {% csrf_token %}      
+                    <div class="form-left">
+                        <div class="container ">
+                            <div class="row" style="margin-left:50px;margin-right:50px;margin-top:-20px;"> 
+                                {% comment %} <div class="col-lg-5"> {% endcomment %}
+                                    <label class="form-label"><h2>Seleccione el paciente</h2></label>
+                                {% comment %} </div> {% endcomment %}
+                                <div class="form-row form-control "style="margin-left:1px;margin-right:0px;margin-top:-40px;"><select  class=" " name="paciente" id="paciente"  required>
+                                    <option value="" disabled selected>Elija un paciente ...</option>
+                                    {% for h in formH.fields.paciente.queryset %}
+                                    <option value="{{h.id}}"{% if h == formH.data.paciente  %} selected="selected" {% endif%}>{{h}}</option>
+                                    {% endfor %}
+                                </select><span class="select-btn" style="margin-top: 0px;margin-right:-30px;">
+                                    <i class="fa-solid fa-chevron-down "></i>    
+                                </span> </div>
+                                
+                                
+                                 
+                            </div>
+                            <div class="row"style="margin-top:-20px;" > 
+                                <label class="form-label"><h2>Ingrese el motivo de la consulta</h2></label>
+                            </div>
+                    
+                            <div class="row" style="margin-left:50px;margin-right:50px;margin-top:-40px;">
+                               
+                                
+                                    <input type="text" class="form-control col-md-auto" value="{{formH.data.motivoConsulta}}" placeholder="Motivo de consulta" name="motivoConsulta" id="motivoConsulta" style="margin-top:0px;" maxlength="100" minlength="1">
+                                
+                            </div>
+                            
+                        </div>   
+                        <h2>Enfermedad o problema actual</h2>
+                        <div class="col-md-0">
+                            <span class="col-auto "style="margin-left:55px;">Alérgia Antibiótico</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="antibioticosAlergia" value="{{formH.data.antibioticosAlergia}}">
+                                <option class="option" value="title">Elija una opción</option>
+                                <option class="option" value="S">Si</option>
+                                <option class="option" value="N">No</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                         <div class="col-md-0">
+                            <span class="col-auto "style="margin-left:55px;">Alérgia Anestésia</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="sexo" value="{{formH.data.anestesiaAlergia}}">
+                                <option class="option" value="title">Elija una opción</option>
+                                <option class="option" value="S">Si</option>
+                                <option class="option" value="N">No</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="col-md-0">
+                            <span class="col-auto "style="margin-left:55px;">Hemorrágias</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="sexo" value="{{formH.data.hemorragias}}">
+                                <option class="option" value="title">Elija una opción</option>
+                                <option class="option" value="S">Si</option>
+                                <option class="option" value="N">No</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="col-md-0">
+                            <span class="col-auto "style="margin-left:55px;">VIH/SIDA</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="sexo" value="{{formH.data.sida}}">
+                                <option class="option" value="title">Elija una opción</option>
+                                <option class="option" value="S">Si</option>
+                                <option class="option" value="N">No</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="col-md-0">
+                            <span class="col-auto "style="margin-left:55px;">Tuberculósis</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="sexo" value="{{formH.data.tuberculosis}}">
+                                <option class="option" value="title">Elija una opción</option>
+                                <option class="option" value="S">Si</option>
+                                <option class="option" value="N">No</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
 
-{% block contenido %} 
-{% comment %} <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> {% endcomment %}
-<div class="card">
-    <div class="card-header">
-       <center> Ficha para Registrar una Nueva Historia Clínica</center>
-    </div>
-    <div class="card-body">
-        <h4 class="card-title">Código del Paciente y Motivo de Consulta</h4>
+                        <div class="col-md-0">
+                            <span class="col-auto "style="margin-left:55px;">Asma</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="sexo" value="{{formH.data.asma}}">
+                                <option class="option" value="title">Elija una opción</option>
+                                <option class="option" value="S">Si</option>
+                                <option class="option" value="N">No</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+
+                        <div class="col-md-0">
+                            <span class="col-auto "style="margin-left:55px;">Diabetes</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="sexo" value="{{formH.data.diabetes}}">
+                                <option class="option" value="title">Elija una opción</option>
+                                <option class="option" value="S">Si</option>
+                                <option class="option" value="N">No</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="col-md-0">
+                            <span class="col-auto "style="margin-left:55px;">hipertensión</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="sexo" value="{{formH.data.hipertension}}">
+                                <option class="option" value="title">Elija una opción</option>
+                                <option class="option" value="S">Si</option>
+                                <option class="option" value="N">No</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="col-md-0">
+                            <span class="col-auto "style="margin-left:55px;">Enf. Cardiaca</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="sexo" value="{{formH.data.cardiacas}}">
+                                <option class="option" value="title">Elija una opción</option>
+                                <option class="option" value="S">Si</option>
+                                <option class="option" value="N">No</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="col-md-0">
+                            <span class="col-auto "style="margin-left:55px;">Otros</span>
+                        </div>
+                            <div class="form-row form-row-1">
+                                <input type="text" name="otros" id="otros" class="input-text" value="{{formH.data.otros}}" placeholder="Ingrese el detalle de otra enfermedad" >
+                            </div>
+                            <h2>Secuencia del tratamiento</h2>
+                            <div class="col-md-0">
+                                <div class="form-row">
+                                    <input  type="date" class="form-control col-md-auto" value="{{formH.data.fechaTratamiento1}}" name="fechaTratamiento1" placeholder="Fecha de Tratamiento 1" id="fechaTratamiento1" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <input type="text" name="desTratamiento1" id="desTratamiento1" class="input-text" value="{{formH.data.desTratamiento1}}" placeholder="Descripcion del tratamiento 1" >
+                            </div> 
+                            <div class="col-md-0">
+                                <div class="form-row">
+                                    <input  type="date" class="form-control col-md-auto" value="{{formH.data.fechaTratamiento2}}" name="fechaTratamiento2" placeholder="Fecha de Tratamiento 2" id="fechaTratamiento2" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <input type="text" name="desTratamiento2" id="desTratamiento2" class="input-text" value="{{formH.data.desTratamiento2}}" placeholder="Descripcion del tratamiento 2" >
+                            </div> 
+                            <div class="col-md-0">
+                                <div class="form-row">
+                                    <input  type="date" class="form-control col-md-auto" value="{{formH.data.fechaTratamiento3}}" name="fechaTratamiento3" placeholder="Fecha de Tratamiento 3" id="fechaTratamiento3" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <input type="text" name="desTratamiento3" id="desTratamiento3" class="input-text" value="{{formH.data.desTratamiento3}}" placeholder="Descripcion del tratamiento 3" >
+                            </div> 
+                            <div class="col-md-0">
+                                <div class="form-row">
+                                    <input  type="date" class="form-control col-md-auto" value="{{formH.data.fechaTratamiento4}}" name="fechaTratamiento4" placeholder="Fecha de Tratamiento 4" id="fechaTratamiento4" >
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <input type="text" name="desTratamiento4" id="desTratamiento4" class="input-text" value="{{formH.data.desTratamiento4}}" placeholder="Descripcion del tratamiento 4" >
+                            </div> 
+                                            
+                        
+                    </div>
+                    <div class="form-right">
+                        <h2>Signos Vitales</h2>
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Presión arterial</span>
+                        </div>
+                        <div class="form-row">
+                            <input type="number" name="presionArterial" class="" id="presionArterial" value="{{formH.data.presionArterial}}" placeholder="Ingrese una cantidad" >
+                        </div>
+
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Frecuencia cardiaca</span>
+                        </div>
+                        <div class="form-row">
+                            <input type="number" name="frecuenciaCardiaca" class="" id="frecuenciaCardiaca" value="{{formH.data.frecuenciaCardiaca}}" placeholder="Ingrese una cantidad" >
+                        </div>
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Temperatura ºC</span>
+                        </div>
+                        <div class="form-row">
+                            <input type="number" name="temperatura" class="" id="temperatura" value="{{formH.data.temperatura}}" placeholder="Ingrese una cantidad" >
+                        </div>
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Frecuencia respiratoria</span>
+                        </div>
+                        <div class="form-row">
+                            <input type="number" name="frecuenciaRespiratoria" class="" id="frecuenciaRespiratoria" value="{{formH.data.frecuenciaRespiratoria}}" placeholder="Ingrese una cantidad" >
+                        </div>
+                        <h2>Exámen estomatognático</h2>
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Labios</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="labios" value="{{formH.data.labios}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Mejillas</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="mejillas" value="{{formH.data.mejillas}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Maxilar superior</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="maxilarSuperior" value="{{formH.data.maxilarSuperior}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Maxilar inferior</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="maxilarInferior" value="{{formH.data.maxilarInferior}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Lengua</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="lengua" value="{{formH.data.lengua}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Paladar</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="paladar" value="{{formH.data.paladar}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div>
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Piso</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="piso" value="{{formH.data.piso}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div>  
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Carrillo</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="carrillo" value="{{formH.data.carrillo}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Glándulas salivales</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="glandulasSalivales" value="{{formH.data.glandulasSalivales}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Orofaringe</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="orofaringe" value="{{formH.data.orofaringe}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">A.T.M.</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="atm" value="{{formH.data.atm}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <div class="">
+                            <span class="col-auto "style="margin-left:55px;color:white;"type="text">Ganglios</span>
+                        </div>
+                        <div class="form-row">
+                            <select name="ganglios" value="{{formH.data.ganglios}}">
+                                <option class="option" value="title">Elija un estado</option>
+                                <option class="option" value="B">Bueno</option>
+                                <option class="option" value="M">Malo</option>
+                            </select>
+                            <span class="select-btn" style="margin-top: -10px">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        {% comment %} Acciones principales {% endcomment %}
+                        <div class="form-row-last">
+                            
+                            <input name="" id="" class="register btn-sm" type="submit" value="Enviar Información">
+                            <a name="" id="" class="btn btn-primary btn-lg" href="{% url 'historiaC' %}" role="button">Cancelar</a>
+                        </div> 
+
+                        
+
+                    </div>
+                    
+                </form>
+                
+            </div>
+            
+        </div>
+       
         
-        {% include 'historiaClinica/formHistoriaC.html' %}
-        {% include 'historiaClinica/formEnfermedad.html' %}
+    </body>
 
-    </div>
-   
-    <div class="card-footer text-muted">
-        Registar Historia Clínica en MedicDental v.1.0
-    </div>
 
-</div>
-{% comment %} {% include 'historiaClinica/formHistoriaC.html' %} {% endcomment %}
+
+
+
+
+
 
 
 {% endblock %}
 
+{% comment %} <div class="row align-items-center">
+    <div class="">
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col-lg-4">
+                    <select class="form-control col-md-auto" name="paciente" id="paciente" style="margin-top:20px;" required>
+                        <option value="" disabled selected>Seleccione el Paciente ...</option>
+                        {% for h in formH.fields.paciente.queryset %}
+                        <option value="{{h.id}}"{% if h == formH.data.paciente  %} selected="selected" {% endif%}>{{h}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" class="form-control col-md-auto" value="{{formH.data.motivoConsulta}}" placeholder="Motivo" name="motivoConsulta" id="motivoConsulta" style="margin-top:30px;" maxlength="100" minlength="1">
+        </div>
+    </div>
+</div>
+    <input name="" id="" class="btn btn-success" type="submit" value="Enviar Información">
+    <a name="" id="" class="btn btn-primary" href="{% url 'historiaC' %}" role="button">Cancelar</a> {% endcomment %}
