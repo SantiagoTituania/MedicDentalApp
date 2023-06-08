@@ -516,31 +516,31 @@ def registrarCita(request):
             print("paciente", patient)
             print("motivo", objet),
 
-            events = (
-                service.events()
-                .insert(
-                    calendarId="primary",
-                    body={
-                        "summary": "Cita Medic Dental",
-                        "start": {
-                            "dateTime": start_time.isoformat(),
-                            "timeZone": timezone,
-                        },
-                        "end": {
-                            "dateTime": end_time.isoformat(),
-                            "timeZone": timezone,
-                        },
-                        "attendees": [
-                            {
-                                "comment": "Tienes una nueva cita agendada en Medic Dental",
-                                "email": "santiago.tituania93@gmail.com",
-                                "responseStatus": "accepted",
-                            }
-                        ],
-                    },
-                )
-                .execute()
-            )
+            # events = (
+            #     service.events()
+            #     .insert(
+            #         calendarId="primary",
+            #         body={
+            #             "summary": "Cita Medic Dental",
+            #             "start": {
+            #                 "dateTime": start_time.isoformat(),
+            #                 "timeZone": timezone,
+            #             },
+            #             "end": {
+            #                 "dateTime": end_time.isoformat(),
+            #                 "timeZone": timezone,
+            #             },
+            #             "attendees": [
+            #                 {
+            #                     "comment": "Tienes una nueva cita agendada en Medic Dental",
+            #                     "email": "santiago.tituania93@gmail.com",
+            #                     "responseStatus": "accepted",
+            #                 }
+            #             ],
+            #         },
+            #     )
+            #     .execute()
+            # )
             # cita
 
             return HttpResponseRedirect("/citas/lst")

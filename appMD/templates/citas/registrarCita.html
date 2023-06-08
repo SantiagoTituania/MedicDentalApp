@@ -1,76 +1,117 @@
 {% extends 'base.html' %}
-{% block titulo %}Nueva Cita{% endblock %}
-{% block subtitulo %}Agendamiento de Nueva Cita{% endblock %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"> 
+<link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-{% block contenido%}
-<form class="form-inline" action="{% url 'registrarCita' %}" method="post" >
-    {% csrf_token %}
+{% block subtitulo %} Agendamiento de Nueva Cita {% endblock %} 
+{% block contenido %}
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/montserrat-font.css' %}">
+<link rel="stylesheet" href="{% static 'style1.css' %}"/>
+<link rel="stylesheet" href="{% static 'style1.css' %}"/>
     
-    <div class="container text-center"> 
-      <div class="row justify-content-evenly">
-        <div class="col-md-5">
-          <span class="col-auto">Elección del paciente</span>
-        </div>
-        <div class="col-md-5">
-          <span class="col-auto">Elija la fecha de la cita</span>
-        </div>
-        {% comment %} <div class="col">
-          One of three columns
-        </div> {% endcomment %}
-      </div>
-    </div> <br>
-
-    <div class="container text-center">
-      <div class="row justify-content-evenly">
-        <div class="col-md-5">
-          <select class="form-control col-md-auto" name="patient" id="patient" style="margin-top:20px;" required>
-            <option value="" disabled selected>Seleccione el Paciente ...</option>
-            {% for p in form.fields.patient.queryset %}
-          <option value="{{p.id}}"{% if p == form.data.patient  %} selected="selected" {% endif%}>{{p}}</option>
-            {% endfor %}
-          </select>
-        </div>
-        <div class="col-md-5">
-          <input style="margin-top:20px;" type="date" min="2023-02-22" class="form-control col-md-auto" value="{{form.data.date}}" name="date" placeholder="Dia de la Cita" id="date" required>
-        </div>
-        {% comment %} <div class="col">
-          
-        </div> {% endcomment %}
-      </div>
-    </div>
-
-    <div class="container text-center">
-      <div class="row justify-content-evenly">
-        <div class="col-md-5">
-          <span class="col-auto">Elja la hora de la consulta</span>
-        </div>
-        <div class="col-md-5">
-          <span class="col-auto">Motivo de la consulta</span>
-        </div>
-        {% comment %} <div class="col">
-          One of three columns
-        </div> {% endcomment %}
-      </div>
-    </div> <br>
+<body class="form-v10">
     
-    {% comment %} segunda fila para citas {% endcomment %}
-    <div class="container text-center">
-      <div class="row justify-content-evenly">
-        <div class="col-md-5">
-          <input style="margin-top:20px;" type="time" min= "09:00" max="18:00" class="form-control col-md-3" value="{{form.data.heure}}" name="heure" placeholder="Hora de la cita" id="heure" required>
+        <div class="page-content">
+            
+            <div class="form-v10-content">
+
+                
+         
+                <form class="form-detail" action="{% url 'registrarCita' %}" method="post"id="myform" >
+                    {% csrf_token %}      
+                    <div class="form-left">
+                        
+                        <br>
+                        <div class="col-md-0">
+                            <span class=" "style="margin-left:170px"><strong>Seleccione el paciente</strong></span>
+                        </div>
+                        <div class=""style="margin-right:50px;margin-left:50px;">
+                          <select class="" name="patient" id="patient"  required>
+                            <option value="" disabled selected>Elija un paciente de la lista...</option>
+                            {% for p in form.fields.patient.queryset %}
+                          <option value="{{p.id}}"{% if p == form.data.patient  %} selected="selected" {% endif%}>{{p}}</option>
+                            {% endfor %}
+                          </select>
+                            <span class="select-btn" style="margin-top: -65px;margin-right: 500px;">
+                                <i class="fa-solid fa-chevron-down "></i>    
+                            </span>
+                        </div> 
+                        <br>
+                        <div class="col-md-0">
+                          <span class=" "style="margin-left:170px;margin-top:500px"><strong>Elja la hora de la consulta</strong></span>
+                      </div>
+
+                      <div class="form-row">
+                        <input style="margin-left:120px;margin-top:10px" type="time" min="09:00" max="18:00" class="form-control col-md-4" value="{{form.data.heure}}" name="heure" placeholder="Hora de la cita" id="heure" required>
+                      </div>
+                         
+                    </div>
+                    <div class="form-right">
+                      <br>
+                        <div class="">
+                            <span class="col-auto "style="margin-left:170px;color:white;"type="text">Elija la fecha de la cita</span>
+                        </div>
+                        <div class="form-row">
+                          <input style="margin-top:5px;" type="date" min="2023-02-22" class="form-control col-md-auto" value="{{form.data.date}}" name="date" placeholder="Dia de la Cita" id="date" required>
+                        </div>
+
+                        <div class="">
+                          <span class="col-auto "style="margin-left:170px;color:white;"type="text">Motivo de la consulta</span>
+                      </div>
+                      <div class="form-row">
+                        <input type="text" class="form-control col-md-auto" value="{{form.data.objet}}" placeholder="Motivo de la Cita" name="objet" id="objet" style="margin-top:0px;" maxlength="100" minlength="1">
+                      </div>
+
+                        
+                        {% comment %} Acciones principales {% endcomment %}
+                        <div class="">
+                            
+                            <input name="" id="modifier2" style="margin-left:170px"class="register btn-sm" type="submit" value="Guardar">
+                            
+                        </div> 
+
+                        
+
+                    </div>
+                    
+                </form>
+                
+            </div>
+            
         </div>
-        <div class="col-md-5">
-          <input type="text" class="form-control col-md-auto" value="{{form.data.objet}}" placeholder="Motivo de la Cita" name="objet" id="objet" style="margin-top:30px;" maxlength="100" minlength="1">
-        </div>
-        {% comment %} <div class="col">
-          
-        </div> {% endcomment %}
-      </div>
-    </div>
+       
+        
+    </body>
 
 
-    </div>
 
-    <center><button type="submit" class="btn btn-success float-center" style="margin-top:20px;" id="modifier2">Guardar</button></center>
-  </form>
+
+
+
+
+
+
 {% endblock %}
+
+{% comment %} <div class="row align-items-center">
+    <div class="">
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col-lg-4">
+                    <select class="form-control col-md-auto" name="paciente" id="paciente" style="margin-top:20px;" required>
+                        <option value="" disabled selected>Seleccione el Paciente ...</option>
+                        {% for h in formH.fields.paciente.queryset %}
+                        <option value="{{h.id}}"{% if h == formH.data.paciente  %} selected="selected" {% endif%}>{{h}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <input type="text" class="form-control col-md-auto" value="{{formH.data.motivoConsulta}}" placeholder="Motivo" name="motivoConsulta" id="motivoConsulta" style="margin-top:30px;" maxlength="100" minlength="1">
+        </div>
+    </div>
+</div>
+    <input name="" id="" class="btn btn-success" type="submit" value="Enviar Información">
+    <a name="" id="" class="btn btn-primary" href="{% url 'historiaC' %}" role="button">Cancelar</a> {% endcomment %}

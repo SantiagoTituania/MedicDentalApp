@@ -17,13 +17,16 @@
             <div class="form-v10-content">
 
                 
-                <br>
+
                 <form class="form-detail" action="{% url 'registrarH' %}" method="post"id="myform" >
                     {% csrf_token %}      
                     <div class="form-left">
+                        <br>
+                        
                         <div class="container ">
                             <div class="row" style="margin-left:50px;margin-right:50px;margin-top:-20px;"> 
                                 {% comment %} <div class="col-lg-5"> {% endcomment %}
+                                    
                                     <label class="form-label"><h2>Seleccione el paciente</h2></label>
                                 {% comment %} </div> {% endcomment %}
                                 <div class="form-row form-control "style="margin-left:1px;margin-right:0px;margin-top:-40px;"><select  class=" " name="paciente" id="paciente"  required>
