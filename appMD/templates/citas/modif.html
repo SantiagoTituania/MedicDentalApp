@@ -11,6 +11,10 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <form class="form-inline" action="{% url 'put' id=id %}" method="post">
     {% csrf_token %}
+    <br>
+    <br>
+    <br>
+    <br>
     <span class="col-md-1"></span>
     <input type="date" class="form-control col-md-3" value="{{form.data.date|date:'Y-m-d'}}" name="date" placeholder="Fecha de la Cita " id="date" required>
     <span class="col-md-2"></span>

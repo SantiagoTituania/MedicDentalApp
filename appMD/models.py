@@ -106,81 +106,73 @@ class Historia(models.Model):
     anestesiaAlergia = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_enfermedad,
         verbose_name="Alergia anestesia",
     )
     hemorragias = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_enfermedad,
         verbose_name="Hemorrágias",
     )
     sida = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_enfermedad,
         verbose_name="VIH/SIDA",
     )
     tuberculosis = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_enfermedad,
         verbose_name="Tuberculosis",
     )
     asma = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_enfermedad,
         verbose_name="Asma",
     )
     diabetes = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_enfermedad,
         verbose_name="Diabetes",
     )
     hipertension = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_enfermedad,
         verbose_name="Hipertensión",
     )
     cardiacas = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_enfermedad,
         verbose_name="Enfermedad cardiacas",
     )
     otros = models.TextField(max_length=200, verbose_name="Otros", blank=True)
-    fechaTratamiento1 = models.DateField(
-        null=True,
-    )
+    fechaTratamiento1 = models.DateField(null=True, blank=True)
     desTratamiento1 = models.CharField(
         max_length=200, verbose_name="Descripcion tratamient 1", blank=True
     )
-    fechaTratamiento2 = models.DateField(
-        null=True,
-    )
+    fechaTratamiento2 = models.DateField(null=True, blank=True)
     desTratamiento2 = models.CharField(
         max_length=200, verbose_name="Descripcion tratamient 2", blank=True
     )
-    fechaTratamiento3 = models.DateField(
-        null=True,
-    )
+    fechaTratamiento3 = models.DateField(null=True, blank=True)
     desTratamiento3 = models.CharField(
         max_length=200, verbose_name="Descripcion tratamient 3", blank=True
     )
-    fechaTratamiento4 = models.DateField(
-        null=True,
-    )
+    fechaTratamiento4 = models.DateField(null=True, blank=True)
     desTratamiento4 = models.CharField(
         max_length=200, verbose_name="Descripcion tratamient 4", blank=True
     )
@@ -233,106 +225,98 @@ class Historia(models.Model):
     #     max_length=200, verbose_name="Descripcion tratamient 12", blank=True
     # )
     presionArterial = models.CharField(
-        max_length=10,
-        verbose_name="Presión Arterial",
-        null=True,
+        max_length=10, verbose_name="Presión Arterial", null=True, blank=True
     )
     frecuenciaCardiaca = models.CharField(
-        max_length=10,
-        verbose_name="Frecuencia Cardiaca",
-        null=True,
+        max_length=10, verbose_name="Frecuencia Cardiaca", null=True, blank=True
     )
     temperatura = models.CharField(
-        max_length=10,
-        verbose_name="Temperatura",
-        null=True,
+        max_length=10, verbose_name="Temperatura", null=True, blank=True
     )
     frecuenciaRespiratoria = models.CharField(
-        max_length=10,
-        verbose_name="Frecuencia respiratoria",
-        null=True,
+        max_length=10, verbose_name="Frecuencia respiratoria", null=True, blank=True
     )
     labios = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Labios",
     )
     mejillas = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Mejillas",
     )
     maxilarSuperior = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Maxilar superior",
     )
     maxilarInferior = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Maxilar Inferior",
     )
     lengua = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Lengua",
     )
     paladar = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Paladar",
     )
     piso = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Piso",
     )
     carrillo = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Carrillo",
     )
     glandulasSalivales = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Glándulas salivales",
     )
     orofaringe = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Orofaringe",
     )
     atm = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="A.T.M.",
     )
     ganglios = models.CharField(
         max_length=11,
         null=True,
-        blank=False,
+        blank=True,
         choices=paciente_examen_estomatognatico,
         verbose_name="Ganglios",
     )
